@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'sqlite'),
+    'default' => env('DB_CONNECTION', 'oracle'),
 
     /*
     |--------------------------------------------------------------------------
@@ -30,6 +30,18 @@ return [
     */
 
     'connections' => [
+
+        'oracle' => [
+            'driver'         => 'oracle',
+            'host'           => env('DB_HOST', 'localhost'),
+            'port'           => env('DB_PORT', '1521'),
+            'database'       => env('DB_DATABASE', 'xe'),
+            'username'       => env('DB_USERNAME', 'SYSTEM'),
+            'password'       => env('DB_PASSWORD', 'samu2002'),
+            'charset'        => 'AL32UTF8',
+            'prefix'         => '',
+        ],
+
 
         'sqlite' => [
             'driver' => 'sqlite',
