@@ -4,6 +4,7 @@ use App\Http\Controllers\AirlineController;
 use App\Http\Controllers\AirplaneController;
 use App\Http\Controllers\AirportController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\InsurantController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -70,3 +71,13 @@ Route::put('/airports/{id}', [AirportController::class, 'update'])->name('airpor
 Route::delete('/airports/{id}', [AirportController::class, 'destroy'])->name('airports.destroy');
 
 Route::get('/airports/{id}/edit', [AirportController::class, 'edit'])->name('airports.edit');
+
+// Insurant
+
+Route::get('/insurants', [InsurantController::class, 'index'])->name('insurants.index');
+Route::get('/insurants/{name}', [InsurantController::class, 'show'])->name('insurants.show');
+Route::post('/insurants', [InsurantController::class, 'store'])->name('insurants.store');
+Route::put('/insurants/{name}', [InsurantController::class, 'update'])->name('insurants.update');
+Route::delete('/insurants/{name}', [InsurantController::class, 'destroy'])->name('insurants.destroy');
+
+Route::get('/insurants/{id}/edit', [InsurantController::class, 'edit'])->name('insurants.edit');

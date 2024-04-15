@@ -9,8 +9,8 @@ class InsurantController extends Controller
 {
     public function index()
     {
-        $biztosítók = DB::select('SELECT * FROM Biztositok');
-        return response()->json($biztosítók);
+        $biztositok = DB::select('SELECT * FROM Biztositok');
+        return view('insurants.index', ['insurances' => $biztositok]);
     }
 
     public function show($name)
@@ -68,5 +68,18 @@ class InsurantController extends Controller
         } else {
             return response()->json(['message' => 'Biztosító nem található'], 404);
         }
+    }
+    public function edit($name)
+    {
+        $insurance = DB::select('SELECT * FROM Biztositok WHERE name = ?', [$name]);
+
+        if (empty($insurance)) {
+            return response()->json(['message' => 'Insurance not found'], 404);
+        }
+
+        // Since we expect only one airplane, we take the first element of the array
+        $insurance = $insurance[0];
+
+        return view('insurants.edit', compact('insurance'));
     }
 }
