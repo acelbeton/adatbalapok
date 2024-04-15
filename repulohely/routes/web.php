@@ -63,10 +63,10 @@ Route::get('/airplanes/{id}/edit', [AirplaneController::class, 'edit'])->name('a
 
 //Airport
 
-Route::get('/airports', [AirportController::class, 'index']);
-Route::get('/airports/{id}', [AirportController::class, 'show']);
-Route::post('/airports', [AirportController::class, 'store']);
-Route::put('/airports/{id}', [AirportController::class, 'update']);
-Route::delete('/airports/{id}', [AirportController::class, 'destroy']);
+Route::get('/airports', [AirportController::class, 'index'])->name('airports.index');
+Route::get('/airports/{id}', [AirportController::class, 'show'])->name('airports.show');
+Route::post('/airports', [AirportController::class, 'store'])->name('airports.store');
+Route::put('/airports/{id}', [AirportController::class, 'update'])->name('airports.update');
+Route::delete('/airports/{id}', [AirportController::class, 'destroy'])->name('airports.delete');
 
 Route::get('/airports/{id}/edit', [AirportController::class, 'edit'])->name('airports.edit');
