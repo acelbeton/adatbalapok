@@ -10,7 +10,7 @@ class AirplaneController extends Controller
     public function index()
     {
         $repulok = DB::select('SELECT * FROM Repulok');
-        return response()->json($repulok);
+        return view('airplanes.index', ['airplanes' => $repulok]);
     }
 
     public function show($id)
@@ -87,5 +87,19 @@ class AirplaneController extends Controller
         } else {
             return response()->json(['message' => 'Repülő nem található'], 404);
         }
+    }
+
+    public function edit($id)
+    {
+        $airplanes = DB::select('SELECT * FROM Repulok WHERE id = ?', [$id]);
+
+        if (empty($airplane)) {
+            return response()->json(['message' => 'Airplane not found'], 404);
+        }
+
+        // Since we expect only one airplane, we take the first element of the array
+        $airplane = $airplanes[0];
+
+        return view('airplanes.edit', compact('airplane'));
     }
 }

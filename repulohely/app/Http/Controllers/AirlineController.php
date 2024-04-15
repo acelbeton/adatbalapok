@@ -9,9 +9,10 @@ class AirlineController extends Controller
 {
     public function index()
     {
-        $legitarsasagok = DB::select('SELECT * FROM Legitarsasagok');
-        return response()->json($legitarsasagok);
+        $airlines = DB::select('SELECT * FROM Legitarsasagok');
+        return view('airlines.index', ['airlines' => $airlines]);
     }
+
 
     public function show($id)
     {
@@ -75,5 +76,20 @@ class AirlineController extends Controller
         } else {
             return response()->json(['message' => 'Légitársaság nem található'], 404);
         }
+    }
+
+    public function edit($id)
+    {
+        $airlines = DB::select('SELECT * FROM Legitarsasagok WHERE id = ?', [$id]);
+
+
+        if (empty($airplane)) {
+            return response()->json(['message' => 'Airlines not found'], 404);
+        }
+
+        // Since we expect only one airplane, we take the first element of the array
+        $airline = $airlines[0];
+
+        return view('airlines.edit', compact('airline'));
     }
 }
