@@ -80,15 +80,15 @@ class AirlineController extends Controller
 
     public function edit($id)
     {
-        $airlines = DB::select('SELECT * FROM Legitarsasagok WHERE id = ?', [$id]);
+        $airline = DB::select('SELECT * FROM Legitarsasagok WHERE id = ?', [$id]);
 
 
-        if (empty($airplane)) {
+        if (empty($airline)) {
             return response()->json(['message' => 'Airlines not found'], 404);
         }
 
         // Since we expect only one airplane, we take the first element of the array
-        $airline = $airlines[0];
+        $airline = $airline[0];
 
         return view('airlines.edit', compact('airline'));
     }

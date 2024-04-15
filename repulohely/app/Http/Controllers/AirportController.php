@@ -76,7 +76,7 @@ class AirportController extends Controller
 
     public function edit($id)
     {
-        $airports = DB::select('SELECT * FROM Repterek WHERE id = ?', [$id]);
+        $airport = DB::select('SELECT * FROM Repterek WHERE id = ?', [$id]);
 
 
         if (empty($airport)) {
@@ -84,8 +84,8 @@ class AirportController extends Controller
         }
 
         // Since we expect only one airplane, we take the first element of the array
-        $airport = $airports[0];
+        $airport = $airport[0];
 
-        return view('airlines.edit', compact('airport'));
+        return view('airports.edit', compact('airport'));
     }
 }
