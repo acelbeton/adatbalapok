@@ -94,7 +94,7 @@ Route::put('/insurant-packages/{name}/{insurance_company_name}', [InsurantPackag
 Route::delete('/insurant-packages/{name}/{insurance_company_name}', [InsurantPackageController::class, 'destroy'])->name('insurant-packages.destroy');
 
 //Route::get('/insurant-packages/{name}/{insurance_company_name}/edit', [InsurantPackageController::class, 'edit'])->name('insurant-packages.edit');
-Route::get('/insurant-packages/edit/{name}/{insurance_company_name}', [InsurantPackageController::class, 'edit'])->name('insurant-packages.edit');
+Route::get('/insurant-packages/{name}/{insurance_company_name}/edit', [InsurantPackageController::class, 'edit'])->name('insurant-packages.edit');
 
 // Booking
 

@@ -108,7 +108,6 @@ class BookingController extends Controller
             return response()->json(['message' => 'Airport not found'], 404);
         }
 
-        // Since we expect only one airplane, we take the first element of the array
         $booking = $booking[0];
 
         return view('bookings.edit', compact('booking'));

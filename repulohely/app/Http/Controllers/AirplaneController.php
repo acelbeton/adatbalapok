@@ -97,7 +97,6 @@ class AirplaneController extends Controller
             return response()->json(['message' => 'Airplane not found'], 404);
         }
 
-        // Since we expect only one airplane, we take the first element of the array
         $airplane = $airplane[0];
 
         return view('airplanes.edit', compact('airplane'));

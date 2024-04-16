@@ -66,12 +66,11 @@ class InsurantPackageController extends Controller
     {
         $insurancePackage = DB::select('SELECT * FROM BiztositasiCsomagok WHERE name = ? AND insurance_company_name = ?', [$name, $insurance_company_name]);
 
-        if (empty($insurance)) {
-            return response()->json(['message' => 'Insurance package not found '], 404);
+        if (empty($insurancePackage)) {
+            return response()->json(['message' => 'Insurance package not found'], 404);
         }
 
-        // Since we expect only one insurance package, we take the first element of the array
-        $insurance = $insurance[0];
+        $insurancePackage = $insurancePackage[0];
 
         return view('insurant-packages.edit', compact('insurancePackage'));
     }

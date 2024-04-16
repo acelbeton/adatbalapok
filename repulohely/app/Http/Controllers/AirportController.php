@@ -83,7 +83,6 @@ class AirportController extends Controller
             return response()->json(['message' => 'Airport not found'], 404);
         }
 
-        // Since we expect only one airplane, we take the first element of the array
         $airport = $airport[0];
 
         return view('airports.edit', compact('airport'));

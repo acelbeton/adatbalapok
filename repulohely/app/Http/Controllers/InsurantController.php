@@ -77,7 +77,6 @@ class InsurantController extends Controller
             return response()->json(['message' => 'Insurance not found'], 404);
         }
 
-        // Since we expect only one airplane, we take the first element of the array
         $insurance = $insurance[0];
 
         return view('insurants.edit', compact('insurance'));
