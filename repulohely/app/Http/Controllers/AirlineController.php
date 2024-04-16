@@ -31,7 +31,7 @@ class AirlineController extends Controller
         $validated = $request->validate([
             'name' => 'required|max:40',
             'website' => 'nullable|max:160',
-            'rating' => 'nullable|numeric',
+            'rating' => 'nullable|numeric|min:1|max:5',
             'headquarters' => 'nullable|max:40',
         ]);
 

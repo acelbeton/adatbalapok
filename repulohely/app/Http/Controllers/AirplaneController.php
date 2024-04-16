@@ -34,7 +34,7 @@ class AirplaneController extends Controller
             'maintainer' => 'required|max:40',
             'plane_type' => 'required|max:40',
             'plane_capacity' => 'required|integer',
-            'consumption' => 'required|numeric',
+            'consumption' => 'required|numeric|min:0',
         ]);
 
         DB::insert('INSERT INTO Repulok (manufacturer, commercial_cap, business_cap, first_class_cap, maintainer, plane_type, plane_capacity, consumption) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [
