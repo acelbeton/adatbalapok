@@ -10,7 +10,7 @@ class SeatController extends Controller
     public function index()
     {
         $ulesek = DB::select('SELECT * FROM Ulesek');
-        return response()->json($ulesek);
+        return view('seats.index', ['seats' => $ulesek]);
     }
 
     public function show($seat_number)
@@ -72,5 +72,17 @@ class SeatController extends Controller
         } else {
             return response()->json(['message' => 'Ülés nem található'], 404);
         }
+    }
+    public function edit($seat_number){
+        $seat = DB::select('SELECT * FROM Ulesek WHERE seat_number = ?', [$seat_number]);
+
+
+        if (empty($seat)) {
+            return response()->json(['message' => 'Ticket not found'], 404);
+        }
+
+        $seat = $seat[0];
+
+        return view('seats.edit', compact('seat'));
     }
 }

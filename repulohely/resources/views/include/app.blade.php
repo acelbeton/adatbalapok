@@ -11,6 +11,7 @@
 </head>
 <body>
 @include('include.header')
+@include('include.bg')
 <div class="container">
     @yield('content')
 </div>

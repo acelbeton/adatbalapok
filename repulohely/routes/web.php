@@ -8,6 +8,8 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\InsurantController;
 use App\Http\Controllers\InsurantPackageController;
 use App\Http\Controllers\PlaneRouteController;
+use App\Http\Controllers\SeatController;
+use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -113,6 +115,15 @@ Route::put('/plane-routes/{id}', [PlaneRouteController::class, 'update'])->name(
 Route::delete('/plane-routes/{id}', [PlaneRouteController::class, 'destroy'])->name('plane-routes.destroy');
 
 Route::get('/plane-routes/{id}/edit', [PlaneRouteController::class, 'edit'])->name('plane-routes.edit');
+
+// Tickets
+
+Route::get('/tickets', [TicketController::class, 'index'])->name('tickets.index');
+Route::get('/tickets/{id}', [TicketController::class, 'show'])->name('tickets.show');
+Route::post('/tickets', [TicketController::class, 'store'])->name('tickets.store');
+Route::put('/tickets/{id}', [TicketController::class, 'update'])->name('tickets.update');
+Route::delete('/tickets/{id}', [TicketController::class, 'destroy'])->name('tickets.destroy');
+
 
 Route::get('/', [App\Http\Controllers\DatabaseConnectionController::class, 'index']);
 

@@ -1,7 +1,17 @@
 <style>
+    body{
+        margin: 0
+    }
     .navbar {
-        background-color: #f8f9fa;
-        padding: 0.5rem 1rem;
+        margin: 0;
+        border: 0;
+        width: 100%;
+        height: 100px;
+        background: rgba(255, 255, 255, 0.68);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(7px);
+        z-index: 100;
     }
     .navbar-toggler {
         display: none;
@@ -15,10 +25,13 @@
     }
     .nav-item {
         margin-right: 20px;
+        padding-top: 30px;
+        text-align: center;
     }
     .nav-link {
+        font-size: 24px;
+        color: black;
         text-decoration: none;
-        color: inherit;
         padding: 0.5rem 0;
     }
 </style>
@@ -49,6 +62,12 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/plane-routes') }}">Plane Routes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/tickets') }}">Tickets</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/seats') }}">Seats</a>
                 </li>
                 @auth
                     <li class="nav-item">

@@ -10,7 +10,7 @@ class TicketController extends Controller
     public function index()
     {
         $jegyek = DB::select('SELECT * FROM Jegyek');
-        return response()->json($jegyek);
+        return view('tickets.index', ['tickets' => $jegyek]);
     }
 
     public function show($id)
@@ -72,5 +72,18 @@ class TicketController extends Controller
         } else {
             return response()->json(['message' => 'Jegy nem található'], 404);
         }
+    }
+    public function edit($id)
+    {
+        $ticket = DB::select('SELECT * FROM Jegyek WHERE id = ?', [$id]);
+
+
+        if (empty($ticket)) {
+            return response()->json(['message' => 'Ticket not found'], 404);
+        }
+
+        $ticket = $ticket[0];
+
+        return view('tickets.edit', compact('ticket'));
     }
 }
