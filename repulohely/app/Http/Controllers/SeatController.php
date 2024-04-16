@@ -38,7 +38,7 @@ class SeatController extends Controller
             $validated['price'],
         ]);
 
-        return response()->json(['success' => true], 201);
+        return redirect()->route('seats.index');
     }
 
     public function update(Request $request, $seat_number)
@@ -61,14 +61,14 @@ class SeatController extends Controller
             DB::update($updateQuery, [$seat_number]);
         }
 
-        return response()->json(['success' => true]);
+        return redirect()->route('seats.index');
     }
 
     public function destroy($seat_number)
     {
         $deleted = DB::delete('DELETE FROM Ulesek WHERE seat_number = ?', [$seat_number]);
         if ($deleted) {
-            return response()->json(['message' => 'Ülés törölve']);
+            return redirect()->route('seats.index');
         } else {
             return response()->json(['message' => 'Ülés nem található'], 404);
         }

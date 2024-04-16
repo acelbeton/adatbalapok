@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('include.app')
 
 @section('content')
     <div class="container">
@@ -29,7 +29,8 @@
             <!-- Headquarters -->
             <div class="form-group">
                 <label for="headquarters">Headquarters:</label>
-                <input type="text" class="form-control" id="headquarters" name="headquarters" value="{{ $airline->headquarters }}">
+                <input type="text" class="form-control" id="headquarters" name="headquarters"
+                       value="{{ $airline->headquarters }}">
             </div>
 
             <button type="submit" class="btn btn-primary">Update</button>

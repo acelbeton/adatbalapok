@@ -1,6 +1,6 @@
 <!-- resources/views/airplanes/index.blade.php -->
 
-@extends('layouts.app')
+@extends('include.app')
 
 @section('content')
     <div class="container">
@@ -32,10 +32,13 @@
                     <td>{{ $airplane->consumption }}</td>
                     <td>
                         <a href="{{ route('airplanes.edit', $airplane->id) }}" class="btn btn-primary">Edit</a>
-                        <form action="{{ route('airplanes.destroy', $airplane->id) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('airplanes.destroy', $airplane->id) }}" method="POST"
+                              style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this airplane?')">Delete</button>
+                            <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Are you sure you want to delete this airplane?')">Delete
+                            </button>
                         </form>
                     </td>
                 </tr>
@@ -49,42 +52,46 @@
             @csrf
             <div class="form-group">
                 <label for="manufacturer">Manufacturer:</label>
-                <input type="text" class="form-control" id="manufacturer" name="manufacturer" value="{{ old('manufacturer') }}">
+                <input type="text" class="form-control" id="manufacturer" name="manufacturer"
+                       value="{{ old('manufacturer') }}">
             </div>
             <div class="form-group">
                 <label for="commercial_cap">Commercial Capacity:</label>
-                <input type="number" class="form-control" id="commercial_cap" name="commercial_cap" value="{{ old('commercial_cap') }}">
+                <input type="number" class="form-control" id="commercial_cap" name="commercial_cap"
+                       value="{{ old('commercial_cap') }}">
             </div>
             <div class="form-group">
                 <label for="business_cap">Business Capacity:</label>
-                <input type="number" class="form-control" id="business_cap" name="business_cap" value="{{ old('business_cap') }}">
+                <input type="number" class="form-control" id="business_cap" name="business_cap"
+                       value="{{ old('business_cap') }}">
             </div>
             <div class="form-group">
                 <label for="first_class_cap">First Class Capacity:</label>
-                <input type="number" class="form-control" id="first_class_cap" name="first_class_cap" value="{{ old('first_class_cap') }}">
+                <input type="number" class="form-control" id="first_class_cap" name="first_class_cap"
+                       value="{{ old('first_class_cap') }}">
             </div>
             <div class="form-group">
                 <label for="maintainer">Maintainer:</label>
-                <input type="text" class="form-control" id="maintainer" name="maintainer" value="{{ old('maintainer') }}">
+                <input type="text" class="form-control" id="maintainer" name="maintainer"
+                       value="{{ old('maintainer') }}">
             </div>
             <div class="form-group">
                 <label for="plane_type">Plane Type:</label>
-                <input type="text" class="form-control" id="plane_type" name="plane_type" value="{{ old('plane_type') }}">
+                <input type="text" class="form-control" id="plane_type" name="plane_type"
+                       value="{{ old('plane_type') }}">
             </div>
             <div class="form-group">
                 <label for="plane_capacity">Plane Capacity:</label>
-                <input type="number" class="form-control" id="plane_capacity" name="plane_capacity" value="{{ old('plane_capacity') }}">
+                <input type="number" class="form-control" id="plane_capacity" name="plane_capacity"
+                       value="{{ old('plane_capacity') }}">
             </div>
             <div class="form-group">
                 <label for="consumption">Consumption:</label>
-                <input type="number" class="form-control" id="consumption" name="consumption" value="{{ old('consumption') }}">
+                <input type="number" class="form-control" id="consumption" name="consumption"
+                       value="{{ old('consumption') }}">
             </div>
             <button type="submit" class="btn btn-primary">Add Airplane</button>
         </form>
     </div>
-
-
-
-
 
 @endsection

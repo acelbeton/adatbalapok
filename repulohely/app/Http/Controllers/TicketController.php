@@ -38,7 +38,7 @@ class TicketController extends Controller
             $validated['plane_id'],
         ]);
 
-        return response()->json(['success' => true], 201);
+        return redirect()->route('tickets.index');
     }
 
     public function update(Request $request, $id)
@@ -61,14 +61,14 @@ class TicketController extends Controller
             DB::update($updateQuery, [$id]);
         }
 
-        return response()->json(['success' => true]);
+        return redirect()->route('tickets.index');
     }
 
     public function destroy($id)
     {
         $deleted = DB::delete('DELETE FROM Jegyek WHERE id = ?', [$id]);
         if ($deleted) {
-            return response()->json(['message' => 'Jegy törölve']);
+            return redirect()->route('tickets.index');
         } else {
             return response()->json(['message' => 'Jegy nem található'], 404);
         }

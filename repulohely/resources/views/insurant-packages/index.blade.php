@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('include.app')
 
 @section('content')
     <div class="container">
@@ -21,11 +21,16 @@
                     <td>{{ $package->insurance_company_name }}</td>
                     <td>{{ $package->price }}</td>
                     <td>
-                        <a href="{{ route('insurant-packages.edit', ['name' => $package->name, 'insurance_company_name' => $package->insurance_company_name]) }}" class="btn btn-primary">Edit</a>
-                        <form action="{{ route('insurant-packages.destroy', ['name' => $package->name, 'insurance_company_name' => $package->insurance_company_name]) }}" method="POST" style="display:inline;">
+                        <a href="{{ route('insurant-packages.edit', ['name' => $package->name, 'insurance_company_name' => $package->insurance_company_name]) }}"
+                           class="btn btn-primary">Edit</a>
+                        <form action="{{ route('insurant-packages.destroy', ['name' => $package->name, 'insurance_company_name' => $package->insurance_company_name]) }}"
+                              method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this insurance package?')">Delete</button>
+                            <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Are you sure you want to delete this insurance package?')">
+                                Delete
+                            </button>
                         </form>
                     </td>
                 </tr>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('include.app')
 
 @section('content')
     <div class="container">
@@ -23,7 +23,8 @@
             <!-- Flight Length -->
             <div class="form-group">
                 <label for="flight_length">Flight Length:</label>
-                <input type="text" class="form-control" id="flight_length" name="flight_length" value="{{ $route->flight_length }}">
+                <input type="text" class="form-control" id="flight_length" name="flight_length"
+                       value="{{ $route->flight_length }}">
             </div>
 
             <!-- Airline -->
@@ -35,7 +36,8 @@
             <!-- Child Friendly -->
             <div class="form-group">
                 <label for="child_friendly">Child Friendly:</label>
-                <input type="text" class="form-control" id="child_friendly" name="child_friendly" value="{{ $route->child_friendly }}">
+                <input type="text" class="form-control" id="child_friendly" name="child_friendly"
+                       value="{{ $route->child_friendly }}">
             </div>
 
             <button type="submit" class="btn btn-primary">Update</button>

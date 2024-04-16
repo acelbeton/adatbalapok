@@ -36,7 +36,7 @@ class InsurantController extends Controller
             $validated['website'],
         ]);
 
-        return response()->json(['success' => true], 201);
+        return redirect()->route('insurants.index');
     }
 
     public function update(Request $request, $name)
@@ -57,16 +57,16 @@ class InsurantController extends Controller
             DB::update($updateQuery, [$name]);
         }
 
-        return response()->json(['success' => true]);
+        return redirect()->route('insurants.index');
     }
 
     public function destroy($name)
     {
         $deleted = DB::delete('DELETE FROM Biztositok WHERE name = ?', [$name]);
         if ($deleted) {
-            return response()->json(['message' => 'Biztosító törölve']);
+            return redirect()->route('insurants.index');
         } else {
-            return response()->json(['message' => 'Biztosító nem található'], 404);
+            return response()->json(['message' => 'Biztosító törölve']);
         }
     }
     public function edit($name)

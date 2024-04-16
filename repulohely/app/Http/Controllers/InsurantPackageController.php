@@ -38,7 +38,7 @@ class InsurantPackageController extends Controller
             $validated['price'],
         ]);
 
-        return response()->json(['success' => true], 201);
+        return redirect()->route('insurant-packages.index');
     }
 
     public function update(Request $request, $name, $insurance_company_name)
@@ -53,13 +53,13 @@ class InsurantPackageController extends Controller
             $insurance_company_name,
         ]);
 
-        return response()->json(['success' => true]);
+        return redirect()->route('insurant-packages.index');
     }
 
     public function destroy($name, $insurance_company_name)
     {
         DB::delete('DELETE FROM BiztositasiCsomagok WHERE name = ? AND insurance_company_name = ?', [$name, $insurance_company_name]);
-        return response()->json(['message' => 'Biztosítási csomag törölve']);
+        return redirect()->route('insurant-packages.index');
     }
 
     public function edit($name, $insurance_company_name)

@@ -48,7 +48,7 @@ class AirplaneController extends Controller
             $validated['consumption'],
         ]);
 
-        return response()->json(['success' => true], 201);
+        return redirect()->route('airplanes.index');
     }
 
     public function update(Request $request, $id)
@@ -76,14 +76,14 @@ class AirplaneController extends Controller
             DB::update($updateQuery, [$id]);
         }
 
-        return response()->json(['success' => true]);
+        return redirect()->route('airplanes.index');
     }
 
     public function destroy($id)
     {
         $deleted = DB::delete('DELETE FROM Repulok WHERE id = ?', [$id]);
         if ($deleted) {
-            return response()->json(['message' => 'Repülő törölve']);
+            return redirect()->route('airplanes.index');
         } else {
             return response()->json(['message' => 'Repülő nem található'], 404);
         }

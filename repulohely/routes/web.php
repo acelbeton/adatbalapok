@@ -31,7 +31,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 // AirlineContoroller
 
 // List all airlines
-Route::get('/airlines', [AirlineController::class, 'index']);
+Route::get('/airlines', [AirlineController::class, 'index'])->name("airlines.index");
 
 // Display a specific airline
 Route::get('/airlines/{id}', [AirlineController::class, 'show']);

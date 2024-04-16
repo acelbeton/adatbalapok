@@ -38,7 +38,7 @@ class AirportController extends Controller
             $validated['name']
         ]);
 
-        return response()->json(['success' => true], 201);
+        return redirect()->route('airports.index');
     }
 
     public function update(Request $request, $id)
@@ -61,14 +61,14 @@ class AirportController extends Controller
             DB::update($updateQuery, [$id]);
         }
 
-        return response()->json(['success' => true]);
+        return redirect()->route('airports.index');
     }
 
     public function destroy($id)
     {
         $deleted = DB::delete('DELETE FROM Repterek WHERE id = ?', [$id]);
         if ($deleted) {
-            return response()->json(['message' => 'Reptér törölve']);
+            return redirect()->route('airports.index');
         } else {
             return response()->json(['message' => 'Reptér nem található'], 404);
         }

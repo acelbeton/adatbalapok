@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('include.app')
 
 @section('content')
     <div class="container">
@@ -22,10 +22,13 @@
                     <td>{{ $airport->name }}</td>
                     <td>
                         <a href="{{ route('airports.edit', $airport->id) }}" class="btn btn-primary">Edit</a>
-                        <form action="{{ route('airports.destroy', $airport->id) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('airports.destroy', $airport->id) }}" method="POST"
+                              style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this airport?')">Delete</button>
+                            <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Are you sure you want to delete this airport?')">Delete
+                            </button>
                         </form>
                     </td>
                 </tr>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class AirlineController extends Controller
 {
@@ -34,6 +35,7 @@ class AirlineController extends Controller
             'headquarters' => 'nullable|max:40',
         ]);
 
+
         DB::insert('INSERT INTO Legitarsasagok (name, website, rating, headquarters) VALUES (?, ?, ?, ?)', [
             $validated['name'],
             $validated['website'],
@@ -41,7 +43,7 @@ class AirlineController extends Controller
             $validated['headquarters']
         ]);
 
-        return response()->json(['success' => true], 201);
+        return redirect()->route('airlines.index');
     }
 
     public function update(Request $request, $id)
@@ -52,6 +54,7 @@ class AirlineController extends Controller
             'rating' => 'nullable|numeric',
             'headquarters' => 'nullable|max:40',
         ]);
+
 
         $updates = [];
         foreach (['name', 'website', 'rating', 'headquarters'] as $field) {
@@ -65,16 +68,16 @@ class AirlineController extends Controller
             DB::update($updateQuery, [$id]);
         }
 
-        return response()->json(['success' => true]);
+        return redirect()->route('airlines.index');
     }
 
     public function destroy($id)
     {
         $deleted = DB::delete('DELETE FROM Legitarsasagok WHERE id = ?', [$id]);
         if ($deleted) {
-            return response()->json(['message' => 'Légitársaság törölve']);
+            return redirect()->route('airlines.index');
         } else {
-            return response()->json(['message' => 'Légitársaság nem található'], 404);
+            return response()->json(['message' => 'legitarsasag nem talalhato'], 404);
         }
     }
 

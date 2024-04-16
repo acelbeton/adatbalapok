@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('include.app')
 
 @section('content')
     <div class="container">
@@ -31,11 +31,15 @@
                     <td>{{ $booking->insurance_company }}</td>
                     <td>{{ $booking->class }}</td>
                     <td>
-                        <a href="{{ route('bookings.edit', ['user_id' => $booking->user_id, 'flight_id' => $booking->flight_id, 'plane_id' => $booking->plane_id, 'departure_time' => $booking->departure_time]) }}" class="btn btn-primary">Edit</a>
-                        <form action="{{ route('bookings.destroy', ['user_id' => $booking->user_id, 'flight_id' => $booking->flight_id, 'plane_id' => $booking->plane_id, 'departure_time' => $booking->departure_time]) }}" method="POST" style="display:inline;">
+                        <a href="{{ route('bookings.edit', ['user_id' => $booking->user_id, 'flight_id' => $booking->flight_id, 'plane_id' => $booking->plane_id, 'departure_time' => $booking->departure_time]) }}"
+                           class="btn btn-primary">Edit</a>
+                        <form action="{{ route('bookings.destroy', ['user_id' => $booking->user_id, 'flight_id' => $booking->flight_id, 'plane_id' => $booking->plane_id, 'departure_time' => $booking->departure_time]) }}"
+                              method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this booking?')">Delete</button>
+                            <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Are you sure you want to delete this booking?')">Delete
+                            </button>
                         </form>
                     </td>
                 </tr>

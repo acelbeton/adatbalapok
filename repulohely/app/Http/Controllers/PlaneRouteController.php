@@ -42,7 +42,7 @@ class PlaneRouteController extends Controller
             $validated['child_friendly'],
         ]);
 
-        return response()->json(['success' => true], 201);
+        return redirect()->route('plane-routes.index');
     }
 
     public function update(Request $request, $id)
@@ -67,14 +67,14 @@ class PlaneRouteController extends Controller
             DB::update($updateQuery, [$id]);
         }
 
-        return response()->json(['success' => true]);
+        return redirect()->route('plane-routes.index');
     }
 
     public function destroy($id)
     {
         $deleted = DB::delete('DELETE FROM Jaratok WHERE id = ?', [$id]);
         if ($deleted) {
-            return response()->json(['message' => 'Járat törölve']);
+            return redirect()->route('plane-routes.index');
         } else {
             return response()->json(['message' => 'Járat nem található'], 404);
         }

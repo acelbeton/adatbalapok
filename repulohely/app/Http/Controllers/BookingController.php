@@ -53,7 +53,7 @@ class BookingController extends Controller
             $validated['class'],
         ]);
 
-        return response()->json(['success' => true], 201);
+        return redirect()->route('bookings.index');
     }
 
     public function update(Request $request, $user_id, $flight_id, $plane_id, $departure_time)
@@ -79,7 +79,7 @@ class BookingController extends Controller
             DB::update($sql, $parameters);
         }
 
-        return response()->json(['success' => true]);
+        return redirect()->route('bookings.index');
     }
 
     public function destroy($user_id, $flight_id, $plane_id, $departure_time)
@@ -91,7 +91,7 @@ class BookingController extends Controller
             $departure_time,
         ]);
 
-        return response()->json(['message' => 'Foglalás törölve']);
+        return redirect()->route('bookings.index');
     }
 
     public function edit($user_id, $flight_id, $plane_id, $departure_time)

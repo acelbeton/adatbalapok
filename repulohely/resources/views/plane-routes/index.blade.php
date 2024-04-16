@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('include.app')
 
 @section('content')
     <div class="container">
@@ -26,10 +26,14 @@
                     <td>{{ $route->child_friendly }}</td>
                     <td>
                         <a href="{{ route('plane-routes.edit', $route->id) }}" class="btn btn-primary">Edit</a>
-                        <form action="{{ route('plane-routes.destroy', $route->id) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('plane-routes.destroy', $route->id) }}" method="POST"
+                              style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this flight route?')">Delete</button>
+                            <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Are you sure you want to delete this flight route?')">
+                                Delete
+                            </button>
                         </form>
                     </td>
                 </tr>
