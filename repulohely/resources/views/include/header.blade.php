@@ -13,9 +13,7 @@
         -webkit-backdrop-filter: blur(7px);
         z-index: 100;
     }
-    .navbar-toggler {
-        display: none;
-    }
+
     .navbar-nav {
         display: flex;
         list-style: none;
@@ -25,22 +23,20 @@
     }
     .nav-item {
         margin-right: 20px;
-        padding-top: 30px;
+        padding-top: 25px;
+        padding-bottom: 25px;
         text-align: center;
+        width: 10%;
     }
     .nav-link {
-        font-size: 24px;
+        font-size: 18px;
         color: black;
         text-decoration: none;
         padding: 0.5rem 0;
     }
 </style>
-<header class="z-99 navbar navbar-expand-lg extend-style">
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+<header>
+        <div class="navbar"> <!--class="collapse navbar-collapse" id="navbarNav"!-->
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/airlines') }}">Airlines</a>
@@ -85,5 +81,4 @@
                 @endauth
             </ul>
         </div>
-    </div>
 </header>
