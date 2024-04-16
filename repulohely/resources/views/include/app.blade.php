@@ -52,9 +52,6 @@
 </head>
 <body>
 @include('include.header')
-<div class="bg">
-
-</div>
 <div class="container">
     @yield('content')
 </div>
