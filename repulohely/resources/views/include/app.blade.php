@@ -47,11 +47,13 @@
             width: 95%;
             margin: 0  auto;
         }
-        input[type="text"], input[type="number"]{
+        input[type="text"], input[type="number"], input[type="email"], input[type="password"]{
             margin-top: 10px;
             margin-bottom: 10px;
             margin-right: 20px;
             border-radius: 25px;
+            padding-bottom: 5px;
+            padding-top: 5px;
         }
         button[type="submit"]{
             border-radius: 25px;
