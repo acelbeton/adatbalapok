@@ -10,7 +10,7 @@ class PlaneRouteController extends Controller
     public function index()
     {
         $jaratok = DB::select('SELECT * FROM Jaratok');
-        return response()->json($jaratok);
+        return view('plane-routes.index', ['routes' => $jaratok]);
     }
 
     public function show($id)
@@ -78,5 +78,20 @@ class PlaneRouteController extends Controller
         } else {
             return response()->json(['message' => 'Járat nem található'], 404);
         }
+    }
+
+    public function edit($id)
+    {
+        $route = DB::select('SELECT * FROM Jaratok WHERE id = ?', [$id]);
+
+
+        if (empty($route)) {
+            return response()->json(['message' => 'Airport not found'], 404);
+        }
+
+        // Since we expect only one airplane, we take the first element of the array
+        $route = $route[0];
+
+        return view('plane-routes.edit', compact('route'));
     }
 }

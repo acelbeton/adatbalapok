@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\InsurantController;
 use App\Http\Controllers\InsurantPackageController;
+use App\Http\Controllers\PlaneRouteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -104,3 +105,17 @@ Route::put('/bookings/{user_id}/{flight_id}/{plane_id}/{departure_time}', [Booki
 Route::delete('/bookings/{user_id}/{flight_id}/{plane_id}/{departure_time}', [BookingController::class, 'destroy'])->name('bookings.destroy');
 
 Route::get('/bookings/{user_id}/{flight_id}/{plane_id}/{departure_time}/edit', [BookingController::class, 'edit'])->name('bookings.edit');
+
+// PlaneRoute
+
+Route::get('/plane-routes', [PlaneRouteController::class, 'index'])->name('plane-routes.index');
+Route::get('/plane-routes/{id}', [PlaneRouteController::class, 'show'])->name('plane-routes.show');
+Route::post('/plane-routes', [PlaneRouteController::class, 'store'])->name('plane-routes.store');
+Route::put('/plane-routes/{id}', [PlaneRouteController::class, 'update'])->name('plane-routes.update');
+Route::delete('/plane-routes/{id}', [PlaneRouteController::class, 'destroy'])->name('plane-routes.destroy');
+
+Route::get('/plane-routes/{id}/edit', [PlaneRouteController::class, 'edit'])->name('plane-routes.edit');
+
+
+
+
