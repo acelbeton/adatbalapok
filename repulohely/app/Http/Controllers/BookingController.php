@@ -10,7 +10,7 @@ class BookingController extends Controller
     public function index()
     {
         $foglalasok = DB::select('SELECT * FROM Foglalasok');
-        return response()->json($foglalasok);
+        return view('bookings.index', ['bookings' => $foglalasok]);
     }
 
     public function show($user_id, $flight_id, $plane_id, $departure_time)
@@ -92,5 +92,25 @@ class BookingController extends Controller
         ]);
 
         return response()->json(['message' => 'Foglalás törölve']);
+    }
+
+    public function edit($user_id, $flight_id, $plane_id, $departure_time)
+    {
+        $booking = DB::select('SELECT * FROM Foglalasok WHERE user_id = ? AND flight_id = ? AND plane_id = ? AND departure_time = TO_DATE(?, \'YYYY-MM-DD HH24:MI:SS\')', [
+            $user_id,
+            $flight_id,
+            $plane_id,
+            $departure_time,
+        ]);
+
+
+        if (empty($booking)) {
+            return response()->json(['message' => 'Airport not found'], 404);
+        }
+
+        // Since we expect only one airplane, we take the first element of the array
+        $booking = $booking[0];
+
+        return view('bookings.edit', compact('booking'));
     }
 }

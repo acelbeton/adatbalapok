@@ -9,13 +9,13 @@ class InsurantPackageController extends Controller
 {
     public function index()
     {
-        $csomagok = DB::select('SELECT * FROM BiztosításiCsomagok');
-        return response()->json($csomagok);
+        $csomagok = DB::select('SELECT * FROM BiztositasiCsomagok');
+        return view('insurant-packages.index', ['packages' => $csomagok]);
     }
 
     public function show($name, $insurance_company_name)
     {
-        $csomag = DB::select('SELECT * FROM BiztosításiCsomagok WHERE name = ? AND insurance_company_name = ?', [$name, $insurance_company_name]);
+        $csomag = DB::select('SELECT * FROM BiztositasiCsomagok WHERE name = ? AND insurance_company_name = ?', [$name, $insurance_company_name]);
 
         if (empty($csomag)) {
             return response()->json(['message' => 'Biztosítási csomag nem található'], 404);
@@ -32,7 +32,7 @@ class InsurantPackageController extends Controller
             'price' => 'required|numeric',
         ]);
 
-        DB::insert('INSERT INTO BiztosításiCsomagok (name, insurance_company_name, price) VALUES (?, ?, ?)', [
+        DB::insert('INSERT INTO BiztositasiCsomagok (name, insurance_company_name, price) VALUES (?, ?, ?)', [
             $validated['name'],
             $validated['insurance_company_name'],
             $validated['price'],
@@ -47,7 +47,7 @@ class InsurantPackageController extends Controller
             'price' => 'required|numeric',
         ]);
 
-        DB::update('UPDATE BiztosításiCsomagok SET price = ? WHERE name = ? AND insurance_company_name = ?', [
+        DB::update('UPDATE BiztositasiCsomagok SET price = ? WHERE name = ? AND insurance_company_name = ?', [
             $validated['price'],
             $name,
             $insurance_company_name,
@@ -58,7 +58,21 @@ class InsurantPackageController extends Controller
 
     public function destroy($name, $insurance_company_name)
     {
-        DB::delete('DELETE FROM BiztosításiCsomagok WHERE name = ? AND insurance_company_name = ?', [$name, $insurance_company_name]);
+        DB::delete('DELETE FROM BiztositasiCsomagok WHERE name = ? AND insurance_company_name = ?', [$name, $insurance_company_name]);
         return response()->json(['message' => 'Biztosítási csomag törölve']);
+    }
+
+    public function edit($name, $insurance_company_name)
+    {
+        $insurancePackage = DB::select('SELECT * FROM BiztositasiCsomagok WHERE name = ? AND insurance_company_name = ?', [$name, $insurance_company_name]);
+
+        if (empty($insurance)) {
+            return response()->json(['message' => 'Insurance package not found '], 404);
+        }
+
+        // Since we expect only one insurance package, we take the first element of the array
+        $insurance = $insurance[0];
+
+        return view('insurant-packages.edit', compact('insurancePackage'));
     }
 }

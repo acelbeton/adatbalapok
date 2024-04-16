@@ -4,7 +4,9 @@ use App\Http\Controllers\AirlineController;
 use App\Http\Controllers\AirplaneController;
 use App\Http\Controllers\AirportController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\InsurantController;
+use App\Http\Controllers\InsurantPackageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -80,4 +82,25 @@ Route::post('/insurants', [InsurantController::class, 'store'])->name('insurants
 Route::put('/insurants/{name}', [InsurantController::class, 'update'])->name('insurants.update');
 Route::delete('/insurants/{name}', [InsurantController::class, 'destroy'])->name('insurants.destroy');
 
-Route::get('/insurants/{id}/edit', [InsurantController::class, 'edit'])->name('insurants.edit');
+Route::get('/insurants/{name}/edit', [InsurantController::class, 'edit'])->name('insurants.edit');
+
+// InsurantPackage
+
+Route::get('/insurant-packages', [InsurantPackageController::class, 'index'])->name('insurant-packages.index');
+Route::get('/insurant-packages/{name}/{insurance_company_name}', [InsurantPackageController::class, 'show'])->name('insurant-packages.show');
+Route::post('/insurant-packages', [InsurantPackageController::class, 'store'])->name('insurant-packages.store');
+Route::put('/insurant-packages/{name}/{insurance_company_name}', [InsurantPackageController::class, 'update'])->name('insurant-packages.update');
+Route::delete('/insurant-packages/{name}/{insurance_company_name}', [InsurantPackageController::class, 'destroy'])->name('insurant-packages.destroy');
+
+//Route::get('/insurant-packages/{name}/{insurance_company_name}/edit', [InsurantPackageController::class, 'edit'])->name('insurant-packages.edit');
+Route::get('/insurant-packages/edit/{name}/{insurance_company_name}', [InsurantPackageController::class, 'edit'])->name('insurant-packages.edit');
+
+// Booking
+
+Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
+Route::get('/bookings/{user_id}/{flight_id}/{plane_id}/{departure_time}', [BookingController::class, 'show'])->name('bookings.show');
+Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
+Route::put('/bookings/{user_id}/{flight_id}/{plane_id}/{departure_time}', [BookingController::class, 'update'])->name('bookings.update');
+Route::delete('/bookings/{user_id}/{flight_id}/{plane_id}/{departure_time}', [BookingController::class, 'destroy'])->name('bookings.destroy');
+
+Route::get('/bookings/{user_id}/{flight_id}/{plane_id}/{departure_time}/edit', [BookingController::class, 'edit'])->name('bookings.edit');
