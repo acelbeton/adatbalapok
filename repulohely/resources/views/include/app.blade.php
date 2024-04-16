@@ -29,7 +29,6 @@
             margin: 0 auto;
         }
         td{
-            width: 10%;
             padding-left: 20px;
             padding-right: 20px;
         }
@@ -45,8 +44,37 @@
             width: 200px;
         }
         .container{
-            width: 80%;
+            width: 95%;
             margin: 0  auto;
+        }
+        input[type="text"], input[type="number"]{
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-right: 20px;
+            border-radius: 25px;
+        }
+        button[type="submit"]{
+            border-radius: 25px;
+            padding: 10px 20px;
+            color: white;
+            background: green;
+        }
+        button.btn-danger{
+            color: white;
+            background: darkred;
+            border: 2px solid red;
+            padding: 10px 20px;
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 25px;
+        }
+        td a{
+            text-decoration: none;
+            background: green;
+            padding: 10px 20px;
+            font-size: 12px;
+            border-radius: 25px;
+            color: white;
         }
     </style>
 </head>

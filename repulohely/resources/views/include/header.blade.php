@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your App Title</title>
-    <!-- Include CSS files -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
-    <!-- Include JavaScript files -->
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif; /* Specify your preferred font family */
+            font-family: Inter, Arial, sans-serif;
+            font-weight: 400;
         }
 
         .bg-container {
@@ -60,15 +60,14 @@
         }
 
         .nav-link {
-            font-size: 18px;
+            font-size: 16px;
             color: black;
             text-decoration: none;
             padding: 15px 20px;
+            font-weight: 600;
         }
-        input{
-            margin-top: 10px;
-            margin-bottom: 10px;
-            margin-right: 20px;
+        .nav-link:hover{
+            color: coral;
         }
     </style>
 </head>
