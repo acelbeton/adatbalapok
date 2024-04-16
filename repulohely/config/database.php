@@ -37,7 +37,7 @@ return [
             'port'           => env('DB_PORT', '1521'),
             'database'       => env('DB_DATABASE', 'xe'),
             'username'       => env('DB_USERNAME', 'SYSTEM'),
-            'password'       => env('DB_PASSWORD', '01Marci01'),
+            'password'       => env('DB_PASSWORD', 'samu2002'),
             'charset'        => 'AL32UTF8',
             'prefix'         => '',
         ],
