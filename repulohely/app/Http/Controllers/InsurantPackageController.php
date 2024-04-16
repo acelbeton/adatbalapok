@@ -29,7 +29,7 @@ class InsurantPackageController extends Controller
         $validated = $request->validate([
             'name' => 'required|max:40',
             'insurance_company_name' => 'required|max:40|exists:Biztositok,name',
-            'price' => 'required|numeric',
+            'price' => 'required|numeric|min:0',
         ]);
 
         DB::insert('INSERT INTO BiztositasiCsomagok (name, insurance_company_name, price) VALUES (?, ?, ?)', [
@@ -44,7 +44,7 @@ class InsurantPackageController extends Controller
     public function update(Request $request, $name, $insurance_company_name)
     {
         $validated = $request->validate([
-            'price' => 'required|numeric',
+            'price' => 'required|numeric|min:0',
         ]);
 
         DB::update('UPDATE BiztositasiCsomagok SET price = ? WHERE name = ? AND insurance_company_name = ?', [
