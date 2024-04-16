@@ -10,6 +10,7 @@ use App\Http\Controllers\InsurantPackageController;
 use App\Http\Controllers\PlaneRouteController;
 use App\Http\Controllers\SeatController;
 use App\Http\Controllers\TicketController;
+use App\Http\Middleware\EnsureUserIsAdmin;
 use Illuminate\Support\Facades\Route;
 
 
@@ -37,7 +38,7 @@ Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
 // AirlineContoroller
 
 // List all airlines
-
+Route::middleware(['isadmin'])->group(function () {
 Route::get('/airlines', [AirlineController::class, 'index'])->name("airlines.index");
 
 // Display a specific airline
@@ -142,7 +143,7 @@ Route::post('/seats', [SeatController::class, 'store'])->name('seats.store');
 Route::put('/seats/{seat_number}', [SeatController::class, 'update'])->name('seats.update');
 Route::delete('/seats/{seat_number}', [SeatController::class, 'destroy'])->name('seats.destroy');
 Route::get('/seats/{seat_number}/edit', [SeatController::class, 'edit'])->name('seats.edit');
-
+});
 
 Route::get('/', [App\Http\Controllers\DatabaseConnectionController::class, 'index'])->name('home');
 
