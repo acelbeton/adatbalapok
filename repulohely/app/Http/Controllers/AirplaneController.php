@@ -61,7 +61,7 @@ class AirplaneController extends Controller
             'maintainer' => 'sometimes|max:40',
             'plane_type' => 'sometimes|max:40',
             'plane_capacity' => 'sometimes|integer',
-            'consumption' => 'sometimes|numeric',
+            'consumption' => 'sometimes|numeric|min:0',
         ]);
 
         $updates = [];
