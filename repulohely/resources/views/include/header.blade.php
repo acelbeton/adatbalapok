@@ -77,6 +77,8 @@
     <header>
         <div class="navbar">
             <ul class="navbar-nav">
+            @auth
+                @if (auth()->check() && auth()->user()->privilege === 'admin')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/') }}">Home</a>
                 </li>
@@ -107,11 +109,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/seats') }}">Seats</a>
                 </li>
-                @auth
+                @endif
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/dashboard') }}">Dashboard</a>
+                        <a class="nav-link" href="{{ route('logout') }}">Log out</a>
                     </li>
-                @else
+                @elseguest
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">Log in</a>
                     </li>
@@ -120,7 +122,7 @@
                             <a class="nav-link" href="{{ route('register') }}">Register</a>
                         </li>
                     @endif
-                @endauth
+            @endauth
             </ul>
         </div>
     </header>

@@ -11,17 +11,23 @@ class User extends Authenticatable
 {
     use HasFactory;
 
-    protected $table = 'FELHASZNALOK'; // Specify your table name here
+    protected $table = 'Felhasznalok'; // Specify your table name here
     public $timestamps = false;
-    protected $primaryKey = 'ID';
+    protected $primaryKey = 'id';
     protected $fillable = [
-        'EMAIL', 'PASSWORD', 'NAME'
+        'name', 'email', 'password', 'privilege',
     ];
 
-    protected function casts(): array
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    public function hasRole($role)
     {
-        return [
-            'PRIVILEGE' => 'user',
-        ];
+        return $this->privilege === $role;
     }
+
+
+
+
 }

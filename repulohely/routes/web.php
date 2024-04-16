@@ -25,12 +25,19 @@ Route::get('/login', function () {
     return view('login');
 })->name('login.view');
 
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+
+Route::post('/login', [AuthController::class, 'login']);
+
+
+Route::get('/logout',[AuthController::class, 'logout'])->name('logout');
+
 // Bejelentkezési kérés kezelése
-Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 // AirlineContoroller
 
 // List all airlines
+
 Route::get('/airlines', [AirlineController::class, 'index'])->name("airlines.index");
 
 // Display a specific airline
@@ -137,7 +144,7 @@ Route::delete('/seats/{seat_number}', [SeatController::class, 'destroy'])->name(
 Route::get('/seats/{seat_number}/edit', [SeatController::class, 'edit'])->name('seats.edit');
 
 
-Route::get('/', [App\Http\Controllers\DatabaseConnectionController::class, 'index']);
+Route::get('/', [App\Http\Controllers\DatabaseConnectionController::class, 'index'])->name('home');
 
 
 

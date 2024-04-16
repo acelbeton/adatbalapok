@@ -1,26 +1,26 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-
+use Session;
 class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        // Validálás
         $validatedData = $request->validate([
             'email' => 'required|email|unique:felhasznalok,email',
             'password' => 'required|min:6|confirmed',
+            'password_confirmation' => 'required|same:password|min:6',
             'name' => 'required|max:40',
         ]);
 
-        // Jelszó titkosítása
         $hashedPassword = Hash::make($validatedData['password']);
 
-        // Adatfelvitel, a 'privilege' mező értékét direkt 'user'-re állítjuk
         DB::insert('INSERT INTO Felhasznalok (email, password, name, privilege) VALUES (?, ?, ?, ?)', [
             $validatedData['email'],
             $hashedPassword,
@@ -28,8 +28,7 @@ class AuthController extends Controller
             'user',
         ]);
 
-        // Visszajelzés a felhasználónak
-        return response()->json(['message' => 'Sikeres regisztráció'], 201);
+        return redirect(route('login'));
     }
 
     public function login(Request $request)
@@ -39,14 +38,29 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        if (auth()->attempt($credentials, $request->filled('remember'))) {
-            $request->session()->regenerate();
-
-            return redirect()->intended('/dashboard'); // Ide irányítsd át a felhasználót sikeres bejelentkezés után
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended('/');
         }
 
         return back()->withErrors([
             'email' => 'A megadott hitelesítő adatok nem egyeznek rekordjainkkal.',
         ]);
+    }
+
+    public function showLoginForm()
+    {
+        return view('login');
+    }
+
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }
