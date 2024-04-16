@@ -15,7 +15,7 @@ class BookingController extends Controller
 
     public function show($user_id, $flight_id, $plane_id, $departure_time)
     {
-        $foglalas = DB::select('SELECT * FROM Foglalasok WHERE user_id = ? AND flight_id = ? AND plane_id = ? AND departure_time = TO_DATE(?, \'YYYY-MM-DD HH24:MI:SS\')', [
+        $foglalas = DB::select('SELECT * FROM Foglalasok WHERE user_id = ? AND flight_id = ? AND plane_id = ? AND departure_time = TO_DATE(?, \'YYYY-MM-DD\')', [
             $user_id,
             $flight_id,
             $plane_id,
@@ -42,7 +42,7 @@ class BookingController extends Controller
             'class' => 'required|max:40',
         ]);
 
-        DB::insert('INSERT INTO Foglalasok (user_id, flight_id, plane_id, departure_time, seat_number, insurance_package, insurance_company, class) VALUES (?, ?, ?, TO_DATE(?, \'YYYY-MM-DD HH24:MI:SS\'), ?, ?, ?, ?)', [
+        DB::insert('INSERT INTO Foglalasok (user_id, flight_id, plane_id, departure_time, seat_number, insurance_package, insurance_company, class) VALUES (?, ?, ?, TO_DATE(?, \'YYYY-MM-DD\'), ?, ?, ?, ?)', [
             $validated['user_id'],
             $validated['flight_id'],
             $validated['plane_id'],
@@ -72,10 +72,10 @@ class BookingController extends Controller
             $parameters[] = $value;
         }
 
-        $parameters = array_merge($parameters, [$user_id, $flight_id, $plane_id, $departure_time]);
+        $parameters = array_merge($parameters, [$user_id, $flight_id, $plane_id, explode(' ',$departure_time)[0]]);
 
         if (!empty($sqlSetParts)) {
-            $sql = 'UPDATE Foglalasok SET ' . implode(', ', $sqlSetParts) . ' WHERE user_id = ? AND flight_id = ? AND plane_id = ? AND departure_time = TO_DATE(?, \'YYYY-MM-DD HH24:MI:SS\')';
+            $sql = 'UPDATE Foglalasok SET ' . implode(', ', $sqlSetParts) . ' WHERE user_id = ? AND flight_id = ? AND plane_id = ? AND departure_time = TO_DATE(?, \'YYYY-MM-DD\')';
             DB::update($sql, $parameters);
         }
 

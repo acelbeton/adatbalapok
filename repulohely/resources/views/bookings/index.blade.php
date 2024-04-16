@@ -25,7 +25,7 @@
                     <td>{{ $booking->user_id }}</td>
                     <td>{{ $booking->flight_id }}</td>
                     <td>{{ $booking->plane_id }}</td>
-                    <td>{{ $booking->departure_time }}</td>
+                    <td>{{ explode(' ',$booking->departure_time)[0] }}</td>
                     <td>{{ $booking->seat_number }}</td>
                     <td>{{ $booking->insurance_package }}</td>
                     <td>{{ $booking->insurance_company }}</td>
@@ -58,7 +58,7 @@
             <label>Plane ID:</label>
             <input type="number" name="plane_id" required>
             <label>Departure Time:</label>
-            <input type="datetime-local" name="departure_time" required>
+            <input type="date" name="departure_time" required>
             <label>Seat Number:</label>
             <input type="number" name="seat_number" required>
             <label>Insurance Package:</label>

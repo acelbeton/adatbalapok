@@ -35,7 +35,7 @@
             <div class="form-group">
                 <label for="departure_time">Departure Time:</label>
                 <input type="text" class="form-control" id="departure_time" name="departure_time"
-                       value="{{ $booking->departure_time }}" readonly>
+                       value="{{ explode(' ',$booking->departure_time)[0] }}" readonly>
             </div>
 
             <!-- Seat Number -->
