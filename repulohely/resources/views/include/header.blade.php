@@ -78,12 +78,12 @@
         <div class="navbar">
             <ul class="navbar-nav">
             @auth
-                @if (auth()->check() && auth()->user()->privilege === 'admin')
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/') }}">Home</a>
                 </li>
+                @if (auth()->check() && auth()->user()->privilege === 'admin')
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/airlines') }}">Airlines</a>
+                <a class="nav-link" href="{{ url('/airlines') }}">Airlines</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/airplanes') }}">Airplanes</a>

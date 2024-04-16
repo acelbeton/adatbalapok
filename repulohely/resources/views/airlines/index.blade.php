@@ -45,7 +45,7 @@
             <label>Website:</label>
             <input type="text" name="website">
             <label>Rating:</label>
-            <input type="number" name="rating">
+            <input type="number" name="rating" step="0.01">
             <label>Headquarters:</label>
             <input type="text" name="headquarters">
             <button type="submit">Add Airline</button>
