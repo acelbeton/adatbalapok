@@ -10,9 +10,7 @@ use App\Http\Controllers\InsurantPackageController;
 use App\Http\Controllers\PlaneRouteController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::get('/register', function () {
     return view('register');
@@ -116,6 +114,7 @@ Route::delete('/plane-routes/{id}', [PlaneRouteController::class, 'destroy'])->n
 
 Route::get('/plane-routes/{id}/edit', [PlaneRouteController::class, 'edit'])->name('plane-routes.edit');
 
+Route::get('/', [App\Http\Controllers\DatabaseConnectionController::class, 'index']);
 
 
 
