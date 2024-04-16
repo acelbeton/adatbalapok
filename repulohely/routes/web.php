@@ -124,6 +124,18 @@ Route::post('/tickets', [TicketController::class, 'store'])->name('tickets.store
 Route::put('/tickets/{id}', [TicketController::class, 'update'])->name('tickets.update');
 Route::delete('/tickets/{id}', [TicketController::class, 'destroy'])->name('tickets.destroy');
 
+Route::get('/tickets/{id}/edit', [TicketController::class, 'edit'])->name('tickets.edit');
+
+
+// Seats
+
+Route::get('/seats', [SeatController::class, 'index'])->name('seats.index');
+Route::get('/seats/{seat_number}', [SeatController::class, 'show'])->name('seats.show');
+Route::post('/seats', [SeatController::class, 'store'])->name('seats.store');
+Route::put('/seats/{seat_number}', [SeatController::class, 'update'])->name('seats.update');
+Route::delete('/seats/{seat_number}', [SeatController::class, 'destroy'])->name('seats.destroy');
+Route::get('/seats/{seat_number}/edit', [SeatController::class, 'edit'])->name('seats.edit');
+
 
 Route::get('/', [App\Http\Controllers\DatabaseConnectionController::class, 'index']);
 

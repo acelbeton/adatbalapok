@@ -65,6 +65,11 @@
             text-decoration: none;
             padding: 15px 20px;
         }
+        input{
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-right: 20px;
+        }
     </style>
 </head>
 <body>
