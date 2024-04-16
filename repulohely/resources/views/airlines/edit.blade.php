@@ -23,7 +23,7 @@
             <!-- Rating -->
             <div class="form-group">
                 <label for="rating">Rating:</label>
-                <input type="number" class="form-control" id="rating" name="rating" value="{{ $airline->rating }}">
+                <input type="number" class="form-control" id="rating" name="rating" value="{{ $airline->rating }}" step="0.01">
             </div>
 
             <!-- Headquarters -->
