@@ -33,18 +33,16 @@ class AirplaneController extends Controller
             'first_class_cap' => 'required|integer',
             'maintainer' => 'required|max:40',
             'plane_type' => 'required|max:40',
-            'plane_capacity' => 'required|integer',
             'consumption' => 'required|numeric|min:0',
         ]);
 
-        DB::insert('INSERT INTO Repulok (manufacturer, commercial_cap, business_cap, first_class_cap, maintainer, plane_type, plane_capacity, consumption) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [
+        DB::insert('INSERT INTO Repulok (manufacturer, commercial_cap, business_cap, first_class_cap, maintainer, plane_type, consumption) VALUES (?, ?, ?, ?, ?, ?, ?)', [
             $validated['manufacturer'],
             $validated['commercial_cap'],
             $validated['business_cap'],
             $validated['first_class_cap'],
             $validated['maintainer'],
             $validated['plane_type'],
-            $validated['plane_capacity'],
             $validated['consumption'],
         ]);
 
@@ -60,12 +58,11 @@ class AirplaneController extends Controller
             'first_class_cap' => 'sometimes|integer',
             'maintainer' => 'sometimes|max:40',
             'plane_type' => 'sometimes|max:40',
-            'plane_capacity' => 'sometimes|integer',
             'consumption' => 'sometimes|numeric|min:0',
         ]);
 
         $updates = [];
-        foreach (['manufacturer', 'commercial_cap', 'business_cap', 'first_class_cap', 'maintainer', 'plane_type', 'plane_capacity', 'consumption'] as $field) {
+        foreach (['manufacturer', 'commercial_cap', 'business_cap', 'first_class_cap', 'maintainer', 'plane_type', 'consumption'] as $field) {
             if (isset($validated[$field])) {
                 $updates[] = "$field = '{$validated[$field]}'";
             }

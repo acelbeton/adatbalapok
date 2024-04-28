@@ -81,11 +81,6 @@
                        value="{{ old('plane_type') }}">
             </div>
             <div class="form-group">
-                <label for="plane_capacity">Plane Capacity:</label>
-                <input type="number" class="form-control" id="plane_capacity" name="plane_capacity"
-                       value="{{ old('plane_capacity') }}">
-            </div>
-            <div class="form-group">
                 <label for="consumption">Consumption:</label>
                 <input type="number" class="form-control" id="consumption" name="consumption"
                        value="{{ old('consumption') }}">

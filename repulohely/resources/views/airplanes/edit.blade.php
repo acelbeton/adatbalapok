@@ -52,13 +52,6 @@
                        value="{{ $airplane->plane_type }}">
             </div>
 
-            <!-- Plane Capacity -->
-            <div class="form-group">
-                <label for="plane_capacity">Plane Capacity:</label>
-                <input type="number" class="form-control" id="plane_capacity" name="plane_capacity"
-                       value="{{ $airplane->plane_capacity }}">
-            </div>
-
             <!-- Consumption -->
             <div class="form-group">
                 <label for="consumption">Consumption:</label>
