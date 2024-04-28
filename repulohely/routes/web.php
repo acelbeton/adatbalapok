@@ -8,6 +8,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\InsurantController;
 use App\Http\Controllers\InsurantPackageController;
 use App\Http\Controllers\PlaneRouteController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SeatController;
 use App\Http\Controllers\TicketController;
 use App\Http\Middleware\EnsureUserIsAdmin;
@@ -144,6 +145,15 @@ Route::put('/seats/{seat_number}', [SeatController::class, 'update'])->name('sea
 Route::delete('/seats/{seat_number}', [SeatController::class, 'destroy'])->name('seats.destroy');
 Route::get('/seats/{seat_number}/edit', [SeatController::class, 'edit'])->name('seats.edit');
 });
+
+
+Route::get('/search', [SearchController::class, 'searchFlights'])->name('search');
+Route::get('/average-flight', [SearchController::class, 'averageFlightLengthByAirline'])->name('average.flight');
+Route::get('/child-friendly', [SearchController::class, 'childFriendlyFlights'])->name('listings.child-friendly');
+Route::get('/flights/search', [SearchController::class, 'searchCheapestFlights'])->name('flights.search');
+
+
+
 
 Route::get('/', [App\Http\Controllers\DatabaseConnectionController::class, 'index'])->name('home');
 
