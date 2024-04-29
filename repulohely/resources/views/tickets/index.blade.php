@@ -11,6 +11,7 @@
                 <th>Flight ID</th>
                 <th>Seat Number</th>
                 <th>Plane ID</th>
+                <th>CO2 emission</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -20,6 +21,7 @@
                     <td>{{ $ticket->flight_id }}</td>
                     <td>{{ $ticket->seat_number }}</td>
                     <td>{{ $ticket->plane_id }}</td>
+                    <td>{{ $ticket->co2_emission }}</td>
                     <td>
                         <a href="{{ route('tickets.edit', $ticket->id) }}" class="btn btn-primary">Edit</a>
                         <form action="{{ route('tickets.destroy', $ticket->id) }}" method="POST"

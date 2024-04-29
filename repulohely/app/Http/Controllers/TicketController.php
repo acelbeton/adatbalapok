@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDO;
 
 class TicketController extends Controller
 {
     public function index()
     {
         $jegyek = DB::select('SELECT * FROM Jegyek');
+        foreach ($jegyek as $value) {
+            
+            $value->co2_emission= DB::executeFunction("CO2_EMISSION", ['flight_id'=>$value->flight_id, 'seat_id'=>$value->seat_number, 'plane_id'=>$value->plane_id],PDO::PARAM_STR, 20);
+
+        }
         return view('tickets.index', ['tickets' => $jegyek]);
     }
 
