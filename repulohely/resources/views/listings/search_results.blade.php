@@ -8,7 +8,6 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Flight ID</th>
                     <th>Departure Airport</th>
                     <th>Arrival Airport</th>
                     <th>Departure Time</th>
@@ -20,10 +19,9 @@
                 <tbody>
                 @foreach ($flights as $flight)
                     <tr>
-                        <td>{{ $flight->id }}</td>
                         <td>{{ $flight->departure_airport_name }}</td>
                         <td>{{ $flight->arrival_airport_name }}</td>
-                        <td>{{ $flight->departure_time }}</td>
+                        <td>{{ date('Y-m-d', strtotime($flight->departure_time)) }}</td>
                         <td>{{ $flight->flight_length }} hours</td>
                         <td>{{ $flight->airline_name }}</td>
                         <td>{{ $flight->child_friendly ? 'Yes' : 'No' }}</td>

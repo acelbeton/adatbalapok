@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class AirportController extends Controller
 {
@@ -86,5 +87,39 @@ class AirportController extends Controller
         $airport = $airport[0];
 
         return view('airports.edit', compact('airport'));
+    }
+
+    public function getTotalDepartures()
+    {
+
+        $airports = DB::select('SELECT Results.name AS AirportName,
+                   SUM(Results.Departures) AS TotalDepartures,
+                   SUM(Results.Arrivals) AS TotalArrivals
+            FROM (
+                SELECT Repterek.name,
+                       COUNT(Jaratok.id) AS Departures,
+                       0 AS Arrivals
+                FROM Jaratok
+                JOIN Repterek ON Repterek.id = Jaratok.departure
+                GROUP BY Repterek.name
+
+                UNION ALL
+
+                SELECT Repterek.name,
+                       0 AS Departures,
+                       COUNT(Jaratok.id) AS Arrivals
+                FROM Jaratok
+                JOIN Repterek ON Repterek.id = Jaratok.arrival
+                GROUP BY Repterek.name
+            ) Results
+            GROUP BY Results.name
+
+            ');
+
+        Log::info($airports);
+
+
+
+        return view('listings.airport_departures', compact('airports'));
     }
 }

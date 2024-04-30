@@ -77,10 +77,16 @@
     <header>
         <div class="navbar">
             <ul class="navbar-nav">
-            @auth
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/') }}">Home</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('listings.child-friendly') }}">Child Friendly Flights</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('airport.departures') }}">Airport flights</a>
+                </li>
+            @auth
                 @if (auth()->check() && auth()->user()->privilege === 'admin')
                 <li class="nav-item">
                 <a class="nav-link" href="{{ url('/airlines') }}">Airlines</a>
@@ -113,9 +119,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}">Log out</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('listings.child-friendly') }}">Child Friendly Flights</a>
-                    </li>
                 @elseguest
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">Log in</a>
@@ -125,6 +128,7 @@
                             <a class="nav-link" href="{{ route('register') }}">Register</a>
                         </li>
                     @endif
+
             @endauth
             </ul>
         </div>
