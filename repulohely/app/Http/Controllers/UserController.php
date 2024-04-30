@@ -31,7 +31,7 @@ class UserController extends Controller
     public function index()
     {
         $felhasznalok = DB::select('SELECT * FROM Felhasznalok');
-        return response()->json($felhasznalok);
+        return view('users', ['felhasznalok' => $felhasznalok]);
     }
 
     public function show($id)
