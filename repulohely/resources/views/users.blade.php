@@ -10,7 +10,6 @@
                 <th>Email</th>
                 <th>Name</th>
                 <th>Privilege</th>
-                <th>Actions</th>
             </tr>
             </thead>
             <tbody>

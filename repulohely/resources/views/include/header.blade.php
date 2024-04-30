@@ -118,6 +118,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/seats') }}">Seats</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/users') }}">Users</a>
+                </li>
                 @endif
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('booking.details') }}">My Bookings</a>
