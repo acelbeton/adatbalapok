@@ -94,4 +94,20 @@ class AirlineController extends Controller
 
         return view('airlines.edit', compact('airline'));
     }
+
+    public function getPopularAirlines(){
+
+        $airlineRatingsFlights = DB::select("
+            SELECT
+                l.name as airline_name,
+                l.rating as airline_rating,
+                COUNT(j.id) as total_flights
+            FROM Legitarsasagok l
+            JOIN Jaratok j ON l.id = j.airline
+            GROUP BY l.name, l.rating
+            ORDER BY l.rating DESC
+        ");
+
+        return view('listings.popular_airlines', compact('airlineRatingsFlights'));
+    }
 }

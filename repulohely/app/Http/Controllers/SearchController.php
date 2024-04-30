@@ -65,7 +65,7 @@ class SearchController extends Controller
             GROUP BY l.name
     ');
 
-        return view('airlines.average_flight_lengths', compact('averageLengths'));
+        return view('listings.average_flight_lengths', compact('averageLengths'));
     }
 
 

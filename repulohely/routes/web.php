@@ -156,6 +156,7 @@ Route::get('/airport-departures', [AirportController::class, 'getTotalDepartures
 
 Route::get('/user/bookings', [BookingController::class, 'getUserBookingDetails'])->name('booking.details')->middleware('auth');
 
+Route::get('/popular-airlines', [AirlineController::class, 'getPopularAirlines'])->name('airlines.popular');
 
 Route::get('/', [App\Http\Controllers\DatabaseConnectionController::class, 'index'])->name('home');
 

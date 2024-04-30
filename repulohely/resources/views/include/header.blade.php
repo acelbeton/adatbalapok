@@ -86,6 +86,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('airport.departures') }}">Airport flights</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('airlines.popular') }}">Airline Popularity</a>
+                </li>
             @auth
                 @if (auth()->check() && auth()->user()->privilege === 'admin')
                 <li class="nav-item">
