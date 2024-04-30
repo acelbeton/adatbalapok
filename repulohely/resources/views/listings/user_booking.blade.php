@@ -9,9 +9,10 @@
                 <tr>
                     <th>Departure Airport</th>
                     <th>Arrival Airport</th>
-                    <th>Flight Time</th>
-                    <th>Seat Class</th>
+                    <th>Last Flight Time</th>
+                    <th>Class</th>
                     <th>Insurance Package</th>
+                    <th>Total Bookings on This Flight</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -19,9 +20,10 @@
                     <tr>
                         <td>{{ $booking->departure_airport }}</td>
                         <td>{{ $booking->arrival_airport }}</td>
-                        <td>{{ $booking->flight_time }}</td>
+                        <td>{{ date('Y-m-d', strtotime($booking->departure_time)) }}</td>
                         <td>{{ $booking->seat_class }}</td>
                         <td>{{ $booking->insurance_package }}</td>
+                        <td>{{ $booking->total_bookings_on_this_flight }}</td>
                     </tr>
                 @endforeach
                 </tbody>

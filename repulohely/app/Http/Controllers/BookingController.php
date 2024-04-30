@@ -119,22 +119,25 @@ class BookingController extends Controller
 
         $userId = Auth::id();
 
-        $userBookingDetails = DB::select("
-            SELECT
-                j.departure_time,
+        $userBookingDetails = DB::select('
+                SELECT
+                j.id as flight_id,
                 d.name as departure_airport,
                 a.name as arrival_airport,
-                u.seat_class,
                 b.name as insurance_package,
-                j.departure_time as flight_time
+                f.class as seat_class,
+                f.departure_time as departure_time,
+                COUNT(*) as total_bookings_on_this_flight
             FROM Foglalasok f
             JOIN Jaratok j ON f.flight_id = j.id
             JOIN Repterek d ON j.departure = d.id
             JOIN Repterek a ON j.arrival = a.id
-            JOIN Ulesek u ON f.seat_number = u.seat_number
             JOIN BiztositasiCsomagok b ON f.insurance_package = b.name
             WHERE f.user_id = :userId
-        ", ['userId' => $userId]);
+            GROUP BY j.id, d.name, a.name, b.name, f.class, f.departure_time
+
+
+    ', ['userId' => $userId]);
 
         return view('listings.user_booking', compact('userBookingDetails'));
 
