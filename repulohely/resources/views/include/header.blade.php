@@ -117,6 +117,9 @@
                 </li>
                 @endif
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('booking.details') }}">My Bookings</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}">Log out</a>
                     </li>
                 @elseguest
@@ -128,7 +131,6 @@
                             <a class="nav-link" href="{{ route('register') }}">Register</a>
                         </li>
                     @endif
-
             @endauth
             </ul>
         </div>

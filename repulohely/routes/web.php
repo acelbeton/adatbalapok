@@ -154,6 +154,8 @@ Route::get('/child-friendly', [SearchController::class, 'childFriendlyFlights'])
 
 Route::get('/airport-departures', [AirportController::class, 'getTotalDepartures'])->name('airport.departures');
 
+Route::get('/user/bookings', [BookingController::class, 'getUserBookingDetails'])->name('booking.details')->middleware('auth');
+
 
 Route::get('/', [App\Http\Controllers\DatabaseConnectionController::class, 'index'])->name('home');
 

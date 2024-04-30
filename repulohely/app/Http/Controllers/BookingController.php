@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class BookingController extends Controller
@@ -111,5 +112,31 @@ class BookingController extends Controller
         $booking = $booking[0];
 
         return view('bookings.edit', compact('booking'));
+    }
+
+
+    public function getUserBookingDetails() {
+
+        $userId = Auth::id();
+
+        $userBookingDetails = DB::select("
+            SELECT
+                j.departure_time,
+                d.name as departure_airport,
+                a.name as arrival_airport,
+                u.seat_class,
+                b.name as insurance_package,
+                j.departure_time as flight_time
+            FROM Foglalasok f
+            JOIN Jaratok j ON f.flight_id = j.id
+            JOIN Repterek d ON j.departure = d.id
+            JOIN Repterek a ON j.arrival = a.id
+            JOIN Ulesek u ON f.seat_number = u.seat_number
+            JOIN BiztositasiCsomagok b ON f.insurance_package = b.name
+            WHERE f.user_id = :userId
+        ", ['userId' => $userId]);
+
+        return view('listings.user_booking', compact('userBookingDetails'));
+
     }
 }

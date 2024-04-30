@@ -39,7 +39,8 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('/');
+            $userId = Auth::id();
+            return redirect()->intended('/')->with('userId', $userId);
         }
 
         return back()->withErrors([
