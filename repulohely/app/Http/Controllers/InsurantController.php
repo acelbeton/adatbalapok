@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class InsurantController extends Controller
@@ -80,5 +81,30 @@ class InsurantController extends Controller
         $insurance = $insurance[0];
 
         return view('insurants.edit', compact('insurance'));
+    }
+
+    public function getInsuraceDetails() {
+
+        $userId = Auth::id();
+
+        $userInsuranceDetails = DB::select("
+            SELECT
+                ic.name AS insurance_company_name,
+                ic.website AS insurance_company_website,
+                ip.name AS insurance_package_name,
+                AVG(ip.price) AS average_price,
+                MIN(ip.price) AS cheapest_price,
+                MAX(ip.price) AS most_expensive_price,
+                COUNT(ip.name) AS package_count
+            FROM
+                InsurancePackages ip
+            JOIN
+                InsuranceCompanies ic ON ip.insurance_company_name = ic.name
+            GROUP BY
+                ic.name, ic.website, ip.name;
+        ", ['userId' => $userId]);
+
+        return view('listings.user_insurance', compact('userInsuranceDetails'));
+
     }
 }

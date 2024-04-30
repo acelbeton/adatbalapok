@@ -165,6 +165,11 @@ Route::get('/user/bookings', [BookingController::class, 'getUserBookingDetails']
 
 Route::get('/popular-airlines', [AirlineController::class, 'getPopularAirlines'])->name('airlines.popular');
 
+
+Route::get('/booking/{flightID}/{departureCity}/{arrivalCity}/{departureDate}', [BookingController::class, 'book'])->name('booking.book');
+
+Route::post('/booking/store', [BookingController::class, 'storeBook'])->name('booking.storeBook');
+
 Route::get('/', [App\Http\Controllers\DatabaseConnectionController::class, 'index'])->name('home');
 
 

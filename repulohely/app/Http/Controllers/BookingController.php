@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class BookingController extends Controller
 {
@@ -140,6 +141,52 @@ class BookingController extends Controller
     ', ['userId' => $userId]);
 
         return view('listings.user_booking', compact('userBookingDetails'));
+
+    }
+    public function book($flightID, $departureCity, $arrivalCity, $departureDate)
+    {
+
+        $userId = Auth::id();
+
+        $flight = DB::select("
+            SELECT j.*, le.name as airline_name, da.name AS departure_airport_name, aa.name AS arrival_airport_name
+            FROM jaratok j
+            JOIN repterek da ON j.departure = da.id
+            JOIN repterek aa ON j.arrival = aa.id
+            JOIN legitarsasagok le on j.airline = le.id
+            WHERE j.id = ? ",
+            [$flightID]
+        );
+        Log::info($flightID);
+        $flight = collect($flight);
+        return view('bookings.book', compact('flight'));
+    }
+    public function storeBook(Request $request)
+    {
+
+        $userId = Auth::id();
+        Log::info($request);
+        $validated = $request->validate([
+            'flight_id' => 'required|integer',
+            'plane_id' => 'required|integer',
+            'departure_time' => 'required|date',
+            'seat_number' => 'required|integer',
+            'insurance_package' => 'nullable|max:40',
+            'insurance_company' => 'nullable|max:40',
+            'class' => 'required|max:40',
+        ]);
+
+        DB::insert('INSERT INTO Foglalasok (user_id, flight_id, plane_id, departure_time, seat_number, insurance_package, insurance_company, class) VALUES (?, ?, ?, TO_DATE(?, \'YYYY-MM-DD\'), ?, ?, ?, ?)', [
+            $userId = Auth::id(),
+            $validated['flight_id'],
+            3,
+            $validated['departure_time'],
+            $validated['seat_number'],
+            $validated['insurance_package'],
+            $validated['insurance_company'],
+            $validated['class'],
+        ]);
+        return redirect()->route('booking.details');
 
     }
 }

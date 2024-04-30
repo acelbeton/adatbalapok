@@ -25,6 +25,14 @@
                         <td>{{ $flight->flight_length }} hours</td>
                         <td>{{ $flight->airline_name }}</td>
                         <td>{{ $flight->child_friendly ? 'Yes' : 'No' }}</td>
+                        <td>
+                            <a href="{{ route('booking.book', [
+                                'flightID' => $flight->id,
+                                'departureCity' => $flight->departure_airport_name,
+                                'arrivalCity' => $flight->arrival_airport_name,
+                                'departureDate' => $flight->departure_time
+                            ]) }}" class="btn btn-primary">Book</a>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
