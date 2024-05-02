@@ -151,6 +151,12 @@ Route::post('/seats', [SeatController::class, 'store'])->name('seats.store');
 Route::put('/seats/{seat_number}', [SeatController::class, 'update'])->name('seats.update');
 Route::delete('/seats/{seat_number}', [SeatController::class, 'destroy'])->name('seats.destroy');
 Route::get('/seats/{seat_number}/edit', [SeatController::class, 'edit'])->name('seats.edit');
+
+
+Route::get('/insurance-bought', [InsurantController::class, 'getPaidInsurance'])->name('insurance-bought');
+
+
+
 });
 
 
@@ -164,6 +170,9 @@ Route::get('/airport-departures', [AirportController::class, 'getTotalDepartures
 Route::get('/user/bookings', [BookingController::class, 'getUserBookingDetails'])->name('booking.details')->middleware('auth');
 
 Route::get('/popular-airlines', [AirlineController::class, 'getPopularAirlines'])->name('airlines.popular');
+
+
+
 
 
 Route::get('/booking/{flightID}/{departureCity}/{arrivalCity}/{departureDate}', [BookingController::class, 'book'])->name('booking.book');

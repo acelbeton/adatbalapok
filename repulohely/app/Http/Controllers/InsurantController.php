@@ -83,7 +83,7 @@ class InsurantController extends Controller
         return view('insurants.edit', compact('insurance'));
     }
 
-    public function getInsuraceDetails() {
+    public function getInsuranceDetails() {
 
         $userId = Auth::id();
 
@@ -106,5 +106,19 @@ class InsurantController extends Controller
 
         return view('listings.user_insurance', compact('userInsuranceDetails'));
 
+    }
+
+    public function getPaidInsurance(){
+
+        $sum = DB::select('SELECT
+        insurance_package,
+        count(price) AS pricecount
+        FROM Foglalasok
+        INNER JOIN BiztositasiCsomagok ON BiztositasiCsomagok.name = Foglalasok.insurance_package
+        GROUP BY insurance_package
+
+        ');
+
+        return view('listings.insurance_bought', compact('sum'));
     }
 }

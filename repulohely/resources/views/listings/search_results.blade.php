@@ -14,6 +14,7 @@
                     <th>Flight Length</th>
                     <th>Airline</th>
                     <th>Child Friendly</th>
+                    <th>Flights departing from that airport</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -25,6 +26,7 @@
                         <td>{{ $flight->flight_length }} hours</td>
                         <td>{{ $flight->airline_name }}</td>
                         <td>{{ $flight->child_friendly ? 'Yes' : 'No' }}</td>
+                        <td>{{ $flight->total_flights_from_departure }}</td>
                         <td>
                             <a href="{{ route('booking.book', [
                                 'flightID' => $flight->id,

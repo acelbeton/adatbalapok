@@ -98,4 +98,5 @@ class AirplaneController extends Controller
 
         return view('airplanes.edit', compact('airplane'));
     }
+
 }

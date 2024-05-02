@@ -16,14 +16,17 @@ class SearchController extends Controller
 
 
         $flights = DB::select("
-            SELECT j.*, le.name as airline_name, da.name AS departure_airport_name, aa.name AS arrival_airport_name
+            SELECT j.*, le.name as airline_name, da.name AS departure_airport_name, aa.name AS arrival_airport_name,
+                   (SELECT COUNT(*) FROM jaratok WHERE departure = da.id
+                        AND TRUNC(departure_time) = TO_DATE(?, 'YYYY-MM-DD')) AS total_flights_from_departure
             FROM jaratok j
             JOIN repterek da ON j.departure = da.id
             JOIN repterek aa ON j.arrival = aa.id
             JOIN legitarsasagok le on j.airline = le.id
             WHERE da.city = ? AND aa.city = ? AND TRUNC(j.departure_time) = TO_DATE(?, 'YYYY-MM-DD')",
-            [$departureCity, $arrivalCity, $departureDate]
+            [$departureDate, $departureCity, $arrivalCity, $departureDate]
         );
+
 
 
         return view('listings.search_results', compact('flights'));

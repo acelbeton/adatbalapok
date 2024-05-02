@@ -110,4 +110,7 @@ class AirlineController extends Controller
 
         return view('listings.popular_airlines', compact('airlineRatingsFlights'));
     }
+
+
+
 }
