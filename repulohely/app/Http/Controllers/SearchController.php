@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use PDO;
 
 class SearchController extends Controller
 {
@@ -26,7 +27,9 @@ class SearchController extends Controller
             WHERE da.city = ? AND aa.city = ? AND TRUNC(j.departure_time) = TO_DATE(?, 'YYYY-MM-DD')",
             [$departureDate, $departureCity, $arrivalCity, $departureDate]
         );
-
+        foreach($flights as $value){
+            $value->base_price= DB::executeFunction("base_price", ['child_friendly'=>$value->child_friendly, 'flight_length'=>$value->flight_length],PDO::PARAM_STR, 20);
+        }
 
 
         return view('listings.search_results', compact('flights'));

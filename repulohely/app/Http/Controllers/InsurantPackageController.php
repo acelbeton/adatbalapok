@@ -28,7 +28,7 @@ class InsurantPackageController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|max:40',
-            'insurance_company_name' => 'required|max:40|exists:Biztositok,name',
+            'insurance_company_name' => 'required|max:40',
             'price' => 'required|numeric|min:0',
         ]);
 

@@ -15,6 +15,7 @@
                     <th>Airline</th>
                     <th>Child Friendly</th>
                     <th>Flights departing from that airport</th>
+                    <th>Base price</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -27,6 +28,7 @@
                         <td>{{ $flight->airline_name }}</td>
                         <td>{{ $flight->child_friendly ? 'Yes' : 'No' }}</td>
                         <td>{{ $flight->total_flights_from_departure }}</td>
+                        <td>{{ $flight->base_price }}</td>
                         <td>
                             <a href="{{ route('booking.book', [
                                 'flightID' => $flight->id,
