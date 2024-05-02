@@ -87,24 +87,25 @@ class InsurantController extends Controller
 
         $userId = Auth::id();
 
-        $userInsuranceDetails = DB::select("
+        $userInsuranceDetails = DB::select('
             SELECT
+                DISTINCT
                 ic.name AS insurance_company_name,
                 ic.website AS insurance_company_website,
-                ip.name AS insurance_package_name,
                 AVG(ip.price) AS average_price,
                 MIN(ip.price) AS cheapest_price,
                 MAX(ip.price) AS most_expensive_price,
                 COUNT(ip.name) AS package_count
-            FROM
-                InsurancePackages ip
-            JOIN
-                InsuranceCompanies ic ON ip.insurance_company_name = ic.name
-            GROUP BY
-                ic.name, ic.website, ip.name;
-        ", ['userId' => $userId]);
 
-        return view('listings.user_insurance', compact('userInsuranceDetails'));
+            FROM
+              biztositasicsomagok ip
+            JOIN
+                biztositok ic ON ip.insurance_company_name = ic.name
+            GROUP BY
+                ic.name, ic.website
+        ');
+
+        return view('insurants\listing', compact('userInsuranceDetails'));
 
     }
 

@@ -144,6 +144,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('average.flight') }}">Average flight length</a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('insurants.listings') }}">Insurance calc</a>
+                </li>
                 @auth
                 @if (auth()->check() && auth()->user()->privilege === 'admin')
                 <li class="nav-item dropdown">

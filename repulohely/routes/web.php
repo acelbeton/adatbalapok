@@ -179,6 +179,8 @@ Route::get('/booking/{flightID}/{departureCity}/{arrivalCity}/{departureDate}', 
 
 Route::post('/booking/store', [BookingController::class, 'storeBook'])->name('booking.storeBook');
 
+Route::get('/insurance-list', [InsurantController::class, 'getInsuranceDetails'])->name('insurants.listings');
+
 Route::get('/', [App\Http\Controllers\DatabaseConnectionController::class, 'index'])->name('home');
 
 
