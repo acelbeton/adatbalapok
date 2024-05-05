@@ -5,12 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 use PDO;
 
 class SearchController extends Controller
 {
     public function searchFlights(Request $request)
     {
+
+        $rules = [
+            'departure_city' => 'required|string|max:255',
+            'arrival_city' => 'required|string|max:255',
+            'departure_date' => 'required|date_format:Y-m-d'
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return redirect('home')->withErrors($validator)->withInput();
+        }
+
+
         $departureCity = $request->input('departure_city');
         $arrivalCity = $request->input('arrival_city');
         $departureDate = $request->input('departure_date');
